@@ -51,7 +51,7 @@ const cors = require('cors');
 const path = require('path');
 const app = express();
 
-const Logger = require('./app/src/Logger');
+const Logger = require('./Logger');
 const log = new Logger('server');
 
 const isHttps = false; // must be the same on client.js
