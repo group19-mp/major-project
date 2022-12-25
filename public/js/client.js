@@ -75,18 +75,18 @@ const chatInputEmoji = {
 // Show desired buttons captionBtn, showSwapCameraBtn, showScreenShareBtn, showFullScreenBtn -> (auto-detected)
 const buttons = {
     main: {
-        showShareRoomBtn: true,
+        showShareRoomBtn: false,
         showAudioBtn: true,
         showVideoBtn: true,
         showScreenBtn: true,
         showRecordStreamBtn: true,
         showChatRoomBtn: true,
-        showCaptionRoomBtn: true,
+        showCaptionRoomBtn: false,
         showMyHandBtn: true,
         showWhiteboardBtn: true,
-        showFileShareBtn: true,
+        showFileShareBtn: false,
         showMySettingsBtn: true,
-        showAboutBtn: true, // Please keep me always true, Thank you!
+        showAboutBtn: false, // Please keep me always true, Thank you!
     },
     chat: {
         showSaveMessageBtn: true,
@@ -107,10 +107,10 @@ const buttons = {
         audioBtnClickAllowed: true,
         videoBtnClickAllowed: true,
         showKickOutBtn: true,
-        showSnapShotBtn: true,
-        showFileShareBtn: true,
-        showShareVideoAudioBtn: true,
-        showPrivateMessageBtn: true,
+        showSnapShotBtn: false,
+        showFileShareBtn: false,
+        showShareVideoAudioBtn: false,
+        showPrivateMessageBtn: false,
     },
     local: {
         showSnapShotBtn: true,
@@ -222,7 +222,7 @@ let chatMessages = []; // collect chat messages to save it later if want
 let allPeers = {}; // keep track of all peers in the room, indexed by peer_id == socket.io id
 let transcripts = []; //collect all the transcripts to save it later if you need
 let backupIceServers = [{ urls: 'stun:stun.l.google.com:19302' }]; // backup iceServers
-let countTime; // conference count time
+// let countTime; // conference count time
 // init audio-video
 let initAudioBtn;
 let initVideoBtn;
@@ -246,13 +246,13 @@ let leaveRoomBtn;
 // chat room elements
 let msgerDraggable;
 let msgerHeader;
-let msgerTheme;
+// let msgerTheme;
 let msgerCPBtn;
-let msgerClean;
-let msgerSaveBtn;
+// let msgerClean;
+// let msgerSaveBtn;
 let msgerClose;
 let msgerChat;
-let msgerEmojiBtn;
+// let msgerEmojiBtn;
 let msgerMarkdownBtn;
 let msgerShareFileBtn;
 let msgerInput;
@@ -273,7 +273,7 @@ let msgerCPHeader;
 let msgerCPCloseBtn;
 let msgerCPList;
 // chat room emoji picker
-let msgerEmojiPicker;
+// let msgerEmojiPicker;
 // my settings
 let mySettings;
 let mySettingsHeader;
@@ -386,7 +386,7 @@ let speechRecognitionStop;
  * Load all Html elements by Id
  */
 function getHtmlElementsById() {
-    countTime = getId('countTime');
+    // countTime = getId('countTime');
     // my video
     myVideo = getId('myVideo');
     myVideoWrap = getId('myVideoWrap');
@@ -411,13 +411,13 @@ function getHtmlElementsById() {
     // chat Room elements
     msgerDraggable = getId('msgerDraggable');
     msgerHeader = getId('msgerHeader');
-    msgerTheme = getId('msgerTheme');
+    // msgerTheme = getId('msgerTheme');
     msgerCPBtn = getId('msgerCPBtn');
-    msgerClean = getId('msgerClean');
-    msgerSaveBtn = getId('msgerSaveBtn');
+    // msgerClean = getId('msgerClean');
+    // msgerSaveBtn = getId('msgerSaveBtn');
     msgerClose = getId('msgerClose');
     msgerChat = getId('msgerChat');
-    msgerEmojiBtn = getId('msgerEmojiBtn');
+    // msgerEmojiBtn = getId('msgerEmojiBtn');
     msgerMarkdownBtn = getId('msgerMarkdownBtn');
     msgerShareFileBtn = getId('msgerShareFileBtn');
     msgerInput = getId('msgerInput');
@@ -430,7 +430,7 @@ function getHtmlElementsById() {
     msgerCPCloseBtn = getId('msgerCPCloseBtn');
     msgerCPList = getId('msgerCPList');
     // chat room emoji picker
-    msgerEmojiPicker = getId('msgerEmojiPicker');
+    // msgerEmojiPicker = getId('msgerEmojiPicker');
     //caption box elements
     captionDraggable = getId('captionDraggable');
     captionHeader = getId('captionHeader');
@@ -542,12 +542,12 @@ function setButtonsToolTip() {
     setTippy(aboutBtn, 'About this project', 'right-start');
     setTippy(leaveRoomBtn, 'Leave this room', 'right-start');
     // chat room buttons
-    setTippy(msgerTheme, 'Ghost theme', 'top');
+    // setTippy(msgerTheme, 'Ghost theme', 'top');
     setTippy(msgerCPBtn, 'Private messages', 'top');
-    setTippy(msgerClean, 'Clean the messages', 'top');
-    setTippy(msgerSaveBtn, 'Save the messages', 'top');
+    // setTippy(msgerClean, 'Clean the messages', 'top');
+    // setTippy(msgerSaveBtn, 'Save the messages', 'top');
     setTippy(msgerClose, 'Close', 'right');
-    setTippy(msgerEmojiBtn, 'Emoji', 'top');
+    // setTippy(msgerEmojiBtn, 'Emoji', 'top');
     setTippy(msgerMarkdownBtn, 'Markdown', 'top');
     setTippy(msgerShareFileBtn, 'Share file', 'top');
     setTippy(msgerCleanTextBtn, 'Clean', 'top');
@@ -864,7 +864,7 @@ function handleServerInfo(config) {
     }
 
     if (notify && peers_count == 1) {
-        welcomeUser();
+        // welcomeUser();
     } else {
         checkShareScreen();
     }
@@ -946,7 +946,7 @@ function handleButtonsRule() {
     elemDisplay(mySettingsBtn, buttons.main.showMySettingsBtn);
     elemDisplay(aboutBtn, buttons.main.showAboutBtn);
     // chat
-    elemDisplay(msgerSaveBtn, buttons.chat.showSaveMessageBtn);
+    // elemDisplay(msgerSaveBtn, buttons.chat.showSaveMessageBtn);
     elemDisplay(msgerMarkdownBtn, buttons.chat.showMarkDownBtn);
     elemDisplay(msgerShareFileBtn, buttons.chat.showFileShareBtn);
     elemDisplay(msgerVideoUrlBtn, buttons.chat.showShareVideoAudioBtn);
@@ -1777,21 +1777,21 @@ async function loadLocalMedia(stream) {
 
     // html elements
     const myVideoNavBar = document.createElement('div');
-    const myCountTime = document.createElement('button');
+    // const myCountTime = document.createElement('button');
     const myPeerName = document.createElement('p');
     const myHandStatusIcon = document.createElement('button');
-    const myVideoToImgBtn = document.createElement('button');
-    const myPrivacyBtn = document.createElement('button');
+    // const myVideoToImgBtn = document.createElement('button');
+    // const myPrivacyBtn = document.createElement('button');
     const myVideoStatusIcon = document.createElement('button');
     const myAudioStatusIcon = document.createElement('button');
-    const myVideoFullScreenBtn = document.createElement('button');
+    // const myVideoFullScreenBtn = document.createElement('button');
     const myVideoPinBtn = document.createElement('button');
     const myVideoAvatarImage = document.createElement('img');
     const myPitchMeter = document.createElement('div');
     const myPitchBar = document.createElement('div');
 
     // session time
-    myCountTime.setAttribute('id', 'countTime');
+    // myCountTime.setAttribute('id', 'countTime');
 
     // my peer name
     myPeerName.setAttribute('id', 'myVideoParagraph');
@@ -1803,8 +1803,8 @@ async function loadLocalMedia(stream) {
     myHandStatusIcon.style.setProperty('color', 'rgb(0, 255, 0)');
 
     // my privacy button
-    myPrivacyBtn.setAttribute('id', 'myPrivacyBtn');
-    myPrivacyBtn.className = 'far fa-circle';
+    // myPrivacyBtn.setAttribute('id', 'myPrivacyBtn');
+    // myPrivacyBtn.className = 'far fa-circle';
 
     // my video status element
     myVideoStatusIcon.setAttribute('id', 'myVideoStatusIcon');
@@ -1815,26 +1815,26 @@ async function loadLocalMedia(stream) {
     myAudioStatusIcon.className = 'fas fa-microphone';
 
     // my video to image
-    myVideoToImgBtn.setAttribute('id', 'myVideoToImgBtn');
-    myVideoToImgBtn.className = 'fas fa-camera-retro';
+    // myVideoToImgBtn.setAttribute('id', 'myVideoToImgBtn');
+    // myVideoToImgBtn.className = 'fas fa-camera-retro';
 
     // my video full screen mode
-    myVideoFullScreenBtn.setAttribute('id', 'myVideoFullScreenBtn');
-    myVideoFullScreenBtn.className = 'fas fa-expand';
+    // myVideoFullScreenBtn.setAttribute('id', 'myVideoFullScreenBtn');
+    // myVideoFullScreenBtn.className = 'fas fa-expand';
 
     // my video pin/unpin button
     myVideoPinBtn.setAttribute('id', 'myVideoPinBtn');
     myVideoPinBtn.className = 'fas fa-map-pin';
 
     // no mobile devices
-    setTippy(myCountTime, 'Session Time', 'bottom');
+    // setTippy(myCountTime, 'Session Time', 'bottom');
     setTippy(myPeerName, 'My name', 'bottom');
     setTippy(myHandStatusIcon, 'My hand is raised', 'bottom');
-    setTippy(myPrivacyBtn, 'Toggle video privacy', 'bottom');
+    // setTippy(myPrivacyBtn, 'Toggle video privacy', 'bottom');
     setTippy(myVideoStatusIcon, 'My video is on', 'bottom');
     setTippy(myAudioStatusIcon, 'My audio is on', 'bottom');
-    setTippy(myVideoToImgBtn, 'Take a snapshot', 'bottom');
-    setTippy(myVideoFullScreenBtn, 'Full screen mode', 'bottom');
+    // setTippy(myVideoToImgBtn, 'Take a snapshot', 'bottom');
+    // setTippy(myVideoFullScreenBtn, 'Full screen mode', 'bottom');
     setTippy(myVideoPinBtn, 'Toggle Pin video', 'bottom');
 
     // my video avatar image
@@ -1852,20 +1852,20 @@ async function loadLocalMedia(stream) {
     myVideoNavBar.className = 'navbar fadein';
 
     // attach to video nav bar
-    myVideoNavBar.appendChild(myCountTime);
+    // myVideoNavBar.appendChild(myCountTime);
 
     if (!isMobileDevice) {
         myVideoNavBar.appendChild(myVideoPinBtn);
     }
-    if (isVideoFullScreenSupported) {
-        myVideoNavBar.appendChild(myVideoFullScreenBtn);
-    }
-    if (buttons.local.showSnapShotBtn) {
-        myVideoNavBar.appendChild(myVideoToImgBtn);
-    }
-    if (buttons.local.showVideoCircleBtn) {
-        myVideoNavBar.appendChild(myPrivacyBtn);
-    }
+    // if (isVideoFullScreenSupported) {
+    //     myVideoNavBar.appendChild(myVideoFullScreenBtn);
+    // }
+    // if (buttons.local.showSnapShotBtn) {
+    //     myVideoNavBar.appendChild(myVideoToImgBtn);
+    // }
+    // if (buttons.local.showVideoCircleBtn) {
+    //     myVideoNavBar.appendChild(myPrivacyBtn);
+    // }
 
     myVideoNavBar.appendChild(myAudioStatusIcon);
     myVideoNavBar.appendChild(myVideoStatusIcon);
@@ -1908,21 +1908,21 @@ async function loadLocalMedia(stream) {
     handleButtonsRule();
     setupMySettings();
     setupVideoUrlPlayer();
-    startCountTime();
+    // startCountTime();
     handleBodyOnMouseMove();
 
-    if (isVideoFullScreenSupported) {
-        handleVideoPlayerFs('myVideo', 'myVideoFullScreenBtn');
-    }
+    // if (isVideoFullScreenSupported) {
+    //     handleVideoPlayerFs('myVideo', 'myVideoFullScreenBtn');
+    // }
 
     handleFileDragAndDrop('myVideo', myPeerId, true);
 
-    if (buttons.local.showSnapShotBtn) {
-        handleVideoToImg('myVideo', 'myVideoToImgBtn');
-    }
-    if (buttons.local.showVideoCircleBtn) {
-        handleVideoPrivacyBtn('myVideo', 'myPrivacyBtn');
-    }
+    // if (buttons.local.showSnapShotBtn) {
+    //     handleVideoToImg('myVideo', 'myVideoToImgBtn');
+    // }
+    // if (buttons.local.showVideoCircleBtn) {
+    //     handleVideoPrivacyBtn('myVideo', 'myPrivacyBtn');
+    // }
 
     handleVideoPinUnpin('myVideo', 'myVideoPinBtn', 'myVideoWrap', 'myVideo');
 
@@ -2001,7 +2001,7 @@ async function loadRemoteMediaStream(stream, peers, peer_id) {
     const remotePrivateMsgBtn = document.createElement('button');
     const remotePeerKickOut = document.createElement('button');
     const remoteVideoToImgBtn = document.createElement('button');
-    const remoteVideoFullScreenBtn = document.createElement('button');
+    // const remoteVideoFullScreenBtn = document.createElement('button');
     const remoteVideoPinBtn = document.createElement('button');
     const remoteVideoAvatarImage = document.createElement('img');
     const remotePitchMeter = document.createElement('div');
@@ -2048,8 +2048,8 @@ async function loadRemoteMediaStream(stream, peers, peer_id) {
     remotePeerKickOut.className = 'fas fa-sign-out-alt';
 
     // remote video full screen mode
-    remoteVideoFullScreenBtn.setAttribute('id', peer_id + '_fullScreen');
-    remoteVideoFullScreenBtn.className = 'fas fa-expand';
+    // remoteVideoFullScreenBtn.setAttribute('id', peer_id + '_fullScreen');
+    // remoteVideoFullScreenBtn.className = 'fas fa-expand';
 
     // remote video pin/unpin button
     remoteVideoPinBtn.setAttribute('id', peer_id + '_pinUnpin');
@@ -2065,7 +2065,7 @@ async function loadRemoteMediaStream(stream, peers, peer_id) {
     setTippy(remoteFileShareBtn, 'Send file', 'bottom');
     setTippy(remoteVideoToImgBtn, 'Take a snapshot', 'bottom');
     setTippy(remotePeerKickOut, 'Kick out', 'bottom');
-    setTippy(remoteVideoFullScreenBtn, 'Full screen mode', 'bottom');
+    // setTippy(remoteVideoFullScreenBtn, 'Full screen mode', 'bottom');
     setTippy(remoteVideoPinBtn, 'Toggle Pin video', 'bottom');
 
     // my video avatar image
@@ -2088,9 +2088,9 @@ async function loadRemoteMediaStream(stream, peers, peer_id) {
     if (!isMobileDevice) {
         remoteVideoNavBar.appendChild(remoteVideoPinBtn);
     }
-    if (isVideoFullScreenSupported) {
-        remoteVideoNavBar.appendChild(remoteVideoFullScreenBtn);
-    }
+    // if (isVideoFullScreenSupported) {
+    //     remoteVideoNavBar.appendChild(remoteVideoFullScreenBtn);
+    // }
     if (buttons.remote.showSnapShotBtn) {
         remoteVideoNavBar.appendChild(remoteVideoToImgBtn);
     }
@@ -2147,10 +2147,10 @@ async function loadRemoteMediaStream(stream, peers, peer_id) {
     // handle video pin/unpin
     handleVideoPinUnpin(peer_id + '_video', peer_id + '_pinUnpin', peer_id + '_videoWrap', peer_id);
 
-    if (isVideoFullScreenSupported) {
-        // handle video full screen mode
-        handleVideoPlayerFs(peer_id + '_video', peer_id + '_fullScreen', peer_id);
-    }
+    // if (isVideoFullScreenSupported) {
+    //     // handle video full screen mode
+    //     handleVideoPlayerFs(peer_id + '_video', peer_id + '_fullScreen', peer_id);
+    // }
 
     // handle file share drag and drop
     handleFileDragAndDrop(peer_id + '_video', peer_id);
@@ -2673,14 +2673,14 @@ function takeSnapshot(video) {
 /**
  * Start talk time
  */
-function startCountTime() {
-    countTime.style.display = 'inline';
-    callStartTime = Date.now();
-    setInterval(function printTime() {
-        callElapsedTime = Date.now() - callStartTime;
-        countTime.innerHTML = getTimeToString(callElapsedTime);
-    }, 1000);
-}
+// function startCountTime() {
+//     countTime.style.display = 'inline';
+//     callStartTime = Date.now();
+//     setInterval(function printTime() {
+//         callElapsedTime = Date.now() - callStartTime;
+//         countTime.innerHTML = getTimeToString(callElapsedTime);
+//     }, 1000);
+// }
 
 /**
  * Convert time to string
@@ -2731,7 +2731,7 @@ function manageLeftButtons() {
     setFullScreenBtn();
     setChatRoomBtn();
     setCaptionRoomBtn();
-    setChatEmojiBtn();
+    // setChatEmojiBtn();
     setMyHandBtn();
     setMyWhiteboardBtn();
     setMyFileShareBtn();
@@ -2855,15 +2855,15 @@ function setChatRoomBtn() {
     });
 
     // ghost theme + undo
-    msgerTheme.addEventListener('click', (e) => {
-        if (e.target.className == 'fas fa-ghost') {
-            e.target.className = 'fas fa-undo';
-            document.documentElement.style.setProperty('--msger-bg', 'rgba(0, 0, 0, 0.100)');
-        } else {
-            e.target.className = 'fas fa-ghost';
-            document.documentElement.style.setProperty('--msger-bg', 'radial-gradient(#393939, #000000)');
-        }
-    });
+    // msgerTheme.addEventListener('click', (e) => {
+    //     if (e.target.className == 'fas fa-ghost') {
+    //         e.target.className = 'fas fa-undo';
+    //         document.documentElement.style.setProperty('--msger-bg', 'rgba(0, 0, 0, 0.100)');
+    //     } else {
+    //         e.target.className = 'fas fa-ghost';
+    //         document.documentElement.style.setProperty('--msger-bg', 'radial-gradient(#393939, #000000)');
+    //     }
+    // });
 
     // show msger participants section
     msgerCPBtn.addEventListener('click', (e) => {
@@ -2879,20 +2879,20 @@ function setChatRoomBtn() {
     });
 
     // clean chat messages
-    msgerClean.addEventListener('click', (e) => {
-        if (chatMessages.length != 0) {
-            return cleanMessages();
-        }
-        userLog('info', 'No chat messages to delete');
-    });
+    // msgerClean.addEventListener('click', (e) => {
+    //     if (chatMessages.length != 0) {
+    //         return cleanMessages();
+    //     }
+    //     userLog('info', 'No chat messages to delete');
+    // });
 
     // save chat messages to file
-    msgerSaveBtn.addEventListener('click', (e) => {
-        if (chatMessages.length != 0) {
-            return downloadChatMsgs();
-        }
-        userLog('info', 'No chat messages to save');
-    });
+    // msgerSaveBtn.addEventListener('click', (e) => {
+    //     if (chatMessages.length != 0) {
+    //         return downloadChatMsgs();
+    //     }
+    //     userLog('info', 'No chat messages to save');
+    // });
 
     // close chat room - show left button and status menu if hide
     msgerClose.addEventListener('click', (e) => {
@@ -3028,20 +3028,20 @@ function setCaptionRoomBtn() {
 /**
  * Emoji picker chat room button click event
  */
-function setChatEmojiBtn() {
-    msgerEmojiBtn.addEventListener('click', (e) => {
-        // prevent refresh page
-        e.preventDefault();
-        hideShowEmojiPicker();
-    });
-    // Add emoji picker
-    const pickerOptions = {
-        theme: 'dark',
-        onEmojiSelect: addEmojiToMsg,
-    };
-    const emojiPicker = new EmojiMart.Picker(pickerOptions);
-    msgerEmojiPicker.appendChild(emojiPicker);
-}
+// function setChatEmojiBtn() {
+//     msgerEmojiBtn.addEventListener('click', (e) => {
+//         // prevent refresh page
+//         e.preventDefault();
+//         hideShowEmojiPicker();
+//     });
+//     // Add emoji picker
+//     const pickerOptions = {
+//         theme: 'dark',
+//         onEmojiSelect: addEmojiToMsg,
+//     };
+//     const emojiPicker = new EmojiMart.Picker(pickerOptions);
+//     msgerEmojiPicker.appendChild(emojiPicker);
+// }
 
 /**
  * Add emoji to chat message
@@ -3886,7 +3886,7 @@ async function toggleScreenSharing() {
 
     let screenMediaPromise = null;
 
-    let myPrivacyBtn = getId('myPrivacyBtn');
+    // let myPrivacyBtn = getId('myPrivacyBtn');
 
     try {
         if (!isScreenStreaming) {
@@ -3916,7 +3916,7 @@ async function toggleScreenSharing() {
             setScreenSharingStatus(isScreenStreaming);
             if (myVideoAvatarImage && !useVideo)
                 myVideoAvatarImage.style.display = isScreenStreaming ? 'none' : 'block';
-            if (myPrivacyBtn) myPrivacyBtn.style.display = isScreenStreaming ? 'none' : 'inline';
+            // if (myPrivacyBtn) myPrivacyBtn.style.display = isScreenStreaming ? 'none' : 'inline';
         }
     } catch (err) {
         console.error('[Error] Unable to share the screen', err);
@@ -4433,8 +4433,6 @@ function cleanCaptions() {
  */
 function hideChatRoomAndEmojiPicker() {
     msgerDraggable.style.display = 'none';
-    msgerEmojiPicker.style.display = 'none';
-    msgerEmojiBtn.style.color = '#FFFFFF';
     chatRoomBtn.className = 'fas fa-comment';
     isChatRoomVisible = false;
     isChatEmojiVisible = false;
@@ -4624,26 +4622,15 @@ function appendMessage(from, img, side, msg, privateMsg, msgId = null) {
                 ></button>`;
     }
     msgHTML += `
-                <button
-                    id="msg-delete-${chatMessagesId}"
-                    class="fas fa-trash"
-                    style="color:#fff; border:none; background:transparent;"
-                    onclick="deleteMessage('msg-${chatMessagesId}')"
-                ></button>
-                <button
-                    id="msg-copy-${chatMessagesId}"
-                    class="fas fa-copy" 
-                    style="color:#fff; border:none; background:transparent;"
-                    onclick="copyToClipboard('${chatMessagesId}')"
-                ></button>
+                
             </div>
         </div>
 	</div>
     `;
     msgerChat.insertAdjacentHTML('beforeend', msgHTML);
     msgerChat.scrollTop += 500;
-    setTippy(getId('msg-delete-' + chatMessagesId), 'Delete', 'top');
-    setTippy(getId('msg-copy-' + chatMessagesId), 'Copy', 'top');
+    // setTippy(getId('msg-delete-' + chatMessagesId), 'Delete', 'top');
+    // setTippy(getId('msg-copy-' + chatMessagesId), 'Copy', 'top');
     setTippy(getId('msg-private-reply-' + chatMessagesId), 'Reply', 'top');
     chatMessagesId++;
 }
@@ -4955,17 +4942,17 @@ function emitMsg(from, to, msg, privateMsg, id) {
 /**
  * Hide - Show emoji picker div
  */
-function hideShowEmojiPicker() {
-    if (!isChatEmojiVisible) {
-        msgerEmojiPicker.style.display = 'block';
-        msgerEmojiBtn.style.color = '#FFFF00';
-        isChatEmojiVisible = true;
-        return;
-    }
-    msgerEmojiPicker.style.display = 'none';
-    msgerEmojiBtn.style.color = '#FFFFFF';
-    isChatEmojiVisible = false;
-}
+// function hideShowEmojiPicker() {
+//     if (!isChatEmojiVisible) {
+//         msgerEmojiPicker.style.display = 'block';
+//         msgerEmojiBtn.style.color = '#FFFF00';
+//         isChatEmojiVisible = true;
+//         return;
+//     }
+//     msgerEmojiPicker.style.display = 'none';
+//     msgerEmojiBtn.style.color = '#FFFFFF';
+//     isChatEmojiVisible = false;
+// }
 
 /**
  * Download Chat messages in json format
@@ -6893,41 +6880,37 @@ function showAbout() {
  */
 function leaveRoom() {
     playSound('eject');
-    if (surveyActive) {
-        leaveFeedback();
-    } else {
-        openURL('/newcall');
-    }
+    openURL('/newcall');
 }
 
 /**
  * Ask for feedback when room exit
  */
-function leaveFeedback() {
-    Swal.fire({
-        allowOutsideClick: false,
-        allowEscapeKey: false,
-        showDenyButton: true,
-        background: swalBackground,
-        imageUrl: imgFeedback,
-        title: 'Leave a feedback',
-        text: 'Do you want to rate your MiroTalk experience?',
-        confirmButtonText: `Yes`,
-        denyButtonText: `No`,
-        showClass: {
-            popup: 'animate__animated animate__fadeInDown',
-        },
-        hideClass: {
-            popup: 'animate__animated animate__fadeOutUp',
-        },
-    }).then((result) => {
-        if (result.isConfirmed) {
-            openURL(surveyURL);
-        } else {
-            openURL('/newcall');
-        }
-    });
-}
+// function leaveFeedback() {
+//     Swal.fire({
+//         allowOutsideClick: false,
+//         allowEscapeKey: false,
+//         showDenyButton: true,
+//         background: swalBackground,
+//         imageUrl: imgFeedback,
+//         title: 'Leave a feedback',
+//         text: 'Do you want to rate your MiroTalk experience?',
+//         confirmButtonText: `Yes`,
+//         denyButtonText: `No`,
+//         showClass: {
+//             popup: 'animate__animated animate__fadeInDown',
+//         },
+//         hideClass: {
+//             popup: 'animate__animated animate__fadeOutUp',
+//         },
+//     }).then((result) => {
+//         if (result.isConfirmed) {
+//             openURL(surveyURL);
+//         } else {
+//             openURL('/newcall');
+//         }
+//     });
+// }
 
 /**
  * Make Obj draggable: https://www.w3schools.com/howto/howto_js_draggable.asp
