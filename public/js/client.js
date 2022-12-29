@@ -4774,20 +4774,6 @@ function emitMsg(from, to, msg, privateMsg, id) {
     sendToDataChannel(chatMessage);
 }
 
-/**
- * Hide - Show emoji picker div
- */
-// function hideShowEmojiPicker() {
-//     if (!isChatEmojiVisible) {
-//         msgerEmojiPicker.style.display = 'block';
-//         msgerEmojiBtn.style.color = '#FFFF00';
-//         isChatEmojiVisible = true;
-//         return;
-//     }
-//     msgerEmojiPicker.style.display = 'none';
-//     msgerEmojiBtn.style.color = '#FFFFFF';
-//     isChatEmojiVisible = false;
-// }
 
 /**
  * Download Chat messages in json format
@@ -6205,34 +6191,6 @@ function leaveRoom() {
     openURL('/newcall');
 }
 
-/**
- * Ask for feedback when room exit
- */
-// function leaveFeedback() {
-//     Swal.fire({
-//         allowOutsideClick: false,
-//         allowEscapeKey: false,
-//         showDenyButton: true,
-//         background: swalBackground,
-//         imageUrl: imgFeedback,
-//         title: 'Leave a feedback',
-//         text: 'Do you want to rate your MiroTalk experience?',
-//         confirmButtonText: `Yes`,
-//         denyButtonText: `No`,
-//         showClass: {
-//             popup: 'animate__animated animate__fadeInDown',
-//         },
-//         hideClass: {
-//             popup: 'animate__animated animate__fadeOutUp',
-//         },
-//     }).then((result) => {
-//         if (result.isConfirmed) {
-//             openURL(surveyURL);
-//         } else {
-//             openURL('/newcall');
-//         }
-//     });
-// }
 
 /**
  * Make Obj draggable: https://www.w3schools.com/howto/howto_js_draggable.asp
