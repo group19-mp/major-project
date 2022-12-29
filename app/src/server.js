@@ -234,9 +234,6 @@ app.get('/join/', (req, res) => {
         log.debug('Request Query', req.query);
         /* 
             http://localhost:3000/join?room=test&name=mirotalk&audio=1&video=1&screen=1&notify=1
-            https://p2p.mirotalk.com/join?room=test&name=mirotalk&audio=1&video=1&screen=1&notify=1
-            https://mirotalk.up.railway.app/join?room=test&name=mirotalk&audio=1&video=1&screen=1&notify=1
-            https://mirotalk.herokuapp.com/join?room=test&name=mirotalk&audio=1&video=1&screen=1&notify=1
         */
         const { room, name, audio, video, screen, notify } = req.query;
         // all the params are mandatory for the direct room join
@@ -888,20 +885,6 @@ io.sockets.on('connect', async (socket) => {
         }
     });
 
-    /**
-     * Whiteboard actions for all user in the same room
-     */
-    socket.on('wbCanvasToJson', async (config) => {
-        // log.debug('Whiteboard send canvas', config);
-        let room_id = config.room_id;
-        await sendToRoom(room_id, socket.id, 'wbCanvasToJson', config);
-    });
-
-    socket.on('whiteboardAction', async (config) => {
-        log.debug('Whiteboard', config);
-        let room_id = config.room_id;
-        await sendToRoom(room_id, socket.id, 'whiteboardAction', config);
-    });
 }); // end [sockets.on-connect]
 
 /**

@@ -7,7 +7,10 @@
     <title>Document</title>
 </head>
 <body>
-    <div style="width: 600px; height: 550px;" id="wt-container"></div>
+    <div style="width: 100%; height: 680px;" id="wt-container">
+        <button onclick="clearboard()">Clear Board</button>
+    </div>
+    
     <script src="https://www.whiteboard.team/dist/api.js"></script>
     <script>
         var x;
@@ -25,7 +28,6 @@
                 }
             }
         
-
         var wt = new api.WhiteboardTeam('#wt-container', {
                 clientId: 'd76b0fd6b33e94906b0a5cfe33f81130',
                 boardCode: 'group19teachingboard',
@@ -33,6 +35,10 @@
                     role: x
                 }
             });
+        
+        function clearboard(){
+            wt.board.clear();
+        }
     </script>
 </body>
 </html>

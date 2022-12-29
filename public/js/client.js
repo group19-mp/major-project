@@ -6,18 +6,7 @@
  ██████ ███████ ██ ███████ ██   ████    ██   
 */
 
-/**
- * MiroTalk P2P - Client component
- *
- * @link    GitHub: https://github.com/miroslavpejic85/mirotalk
- * @link    Live demo: https://p2p.mirotalk.com or https://mirotalk.up.railway.app or https://mirotalk.herokuapp.com
- * @license For open source use: AGPLv3
- * @license For commercial use or closed source, contact us at license.mirotalk@gmail.com or buy directly via CodeCanyon
- * @license CodeCanyon: https://codecanyon.net/item/mirotalk-p2p-webrtc-realtime-video-conferences/38376661
- * @author  Miroslav Pejic - miroslav.pejic.85@gmail.com
- * @version 1.0.1
- *
- */
+
 
 'use strict'; // https://www.w3schools.com/js/js_strict.asp
 
@@ -238,7 +227,6 @@ let fullScreenBtn;
 let chatRoomBtn;
 let captionBtn;
 let myHandBtn;
-// let whiteboardBtn;
 let fileShareBtn;
 let mySettingsBtn;
 let aboutBtn;
@@ -312,34 +300,6 @@ let myAudioStatusIcon;
 let mediaRecorder;
 let recordedBlobs;
 let isStreamRecording = false;
-// whiteboard init
-// let whiteboard;
-// let whiteboardHeader;
-// let wbDrawingColorEl;
-// let whiteboardGhostButton;
-// let wbBackgroundColorEl;
-// let whiteboardPencilBtn;
-// let whiteboardObjectBtn;
-// let whiteboardUndoBtn;
-// let whiteboardRedoBtn;
-// let whiteboardImgFileBtn;
-// let whiteboardImgUrlBtn;
-// let whiteboardTextBtn;
-// let whiteboardLineBtn;
-// let whiteboardRectBtn;
-// let whiteboardCircleBtn;
-// let whiteboardSaveBtn;
-// let whiteboardEraserBtn;
-// let whiteboardCleanBtn;
-// let whiteboardCloseBtn;
-// whiteboard settings
-// let wbCanvas = null;
-// let wbIsDrawing = false;
-// let wbIsOpen = false;
-// let wbIsRedoing = false;
-// let wbIsEraser = false;
-// let wbIsBgTransparent = false;
-// let wbPop = [];
 // room actions btns
 let muteEveryoneBtn;
 let hideEveryoneBtn;
@@ -402,7 +362,6 @@ function getHtmlElementsById() {
     fullScreenBtn = getId('fullScreenBtn');
     captionBtn = getId('captionBtn');
     chatRoomBtn = getId('chatRoomBtn');
-    // whiteboardBtn = getId('whiteboardBtn');
     fileShareBtn = getId('fileShareBtn');
     myHandBtn = getId('myHandBtn');
     mySettingsBtn = getId('mySettingsBtn');
@@ -468,26 +427,6 @@ function getHtmlElementsById() {
     myHandStatusIcon = getId('myHandStatusIcon');
     myVideoStatusIcon = getId('myVideoStatusIcon');
     myAudioStatusIcon = getId('myAudioStatusIcon');
-    // my whiteboard
-    // whiteboard = getId('whiteboard');
-    // whiteboardHeader = getId('whiteboardHeader');
-    // wbDrawingColorEl = getId('wbDrawingColorEl');
-    // whiteboardGhostButton = getId('whiteboardGhostButton');
-    // wbBackgroundColorEl = getId('wbBackgroundColorEl');
-    // whiteboardPencilBtn = getId('whiteboardPencilBtn');
-    // whiteboardObjectBtn = getId('whiteboardObjectBtn');
-    // whiteboardUndoBtn = getId('whiteboardUndoBtn');
-    // whiteboardRedoBtn = getId('whiteboardRedoBtn');
-    // whiteboardImgFileBtn = getId('whiteboardImgFileBtn');
-    // whiteboardImgUrlBtn = getId('whiteboardImgUrlBtn');
-    // whiteboardTextBtn = getId('whiteboardTextBtn');
-    // whiteboardLineBtn = getId('whiteboardLineBtn');
-    // whiteboardRectBtn = getId('whiteboardRectBtn');
-    // whiteboardCircleBtn = getId('whiteboardCircleBtn');
-    // whiteboardSaveBtn = getId('whiteboardSaveBtn');
-    // whiteboardEraserBtn = getId('whiteboardEraserBtn');
-    // whiteboardCleanBtn = getId('whiteboardCleanBtn');
-    // whiteboardCloseBtn = getId('whiteboardCloseBtn');
     // room actions buttons
     muteEveryoneBtn = getId('muteEveryoneBtn');
     hideEveryoneBtn = getId('hideEveryoneBtn');
@@ -536,7 +475,6 @@ function setButtonsToolTip() {
     setTippy(chatRoomBtn, 'Open the chat', 'right-start');
     setTippy(captionBtn, 'Open the caption', 'right-start');
     setTippy(myHandBtn, 'Raise your hand', 'right-start');
-    // setTippy(whiteboardBtn, 'Open the whiteboard', 'right-start');
     setTippy(fileShareBtn, 'Share file', 'right-start');
     setTippy(mySettingsBtn, 'Open settings', 'right-start');
     setTippy(aboutBtn, 'About this project', 'right-start');
@@ -569,24 +507,6 @@ function setButtonsToolTip() {
     setTippy(tabRoomBtn, 'Room', 'top');
     setTippy(tabStylingBtn, 'Styling', 'top');
     setTippy(tabLanguagesBtn, 'Languages', 'top');
-    // whiteboard btns
-    // setTippy(wbDrawingColorEl, 'Drawing color', 'bottom');
-    // setTippy(whiteboardGhostButton, 'Toggle transparent background', 'bottom');
-    // setTippy(wbBackgroundColorEl, 'Background color', 'bottom');
-    // setTippy(whiteboardPencilBtn, 'Drawing mode', 'bottom');
-    // setTippy(whiteboardObjectBtn, 'Object mode', 'bottom');
-    // setTippy(whiteboardUndoBtn, 'Undo', 'bottom');
-    // setTippy(whiteboardRedoBtn, 'Redo', 'bottom');
-    // setTippy(whiteboardImgFileBtn, 'Add image from file', 'bottom');
-    // setTippy(whiteboardImgUrlBtn, 'Add image from URL', 'bottom');
-    // setTippy(whiteboardTextBtn, 'Add the text', 'bottom');
-    // setTippy(whiteboardLineBtn, 'Add the line', 'bottom');
-    // setTippy(whiteboardRectBtn, 'Add the rectangle', 'bottom');
-    // setTippy(whiteboardCircleBtn, 'Add the circle', 'bottom');
-    // setTippy(whiteboardSaveBtn, 'Save the board', 'bottom');
-    // setTippy(whiteboardEraserBtn, 'Erase the object', 'bottom');
-    // setTippy(whiteboardCleanBtn, 'Clean the board', 'bottom');
-    // setTippy(whiteboardCloseBtn, 'Close', 'right');
     // room actions btn
     setTippy(muteEveryoneBtn, 'Mute everyone except yourself', 'top');
     setTippy(hideEveryoneBtn, 'Hide everyone except yourself', 'top');
@@ -793,8 +713,6 @@ function initClientPeer() {
     signalingSocket.on('peerName', handlePeerName);
     signalingSocket.on('peerStatus', handlePeerStatus);
     signalingSocket.on('peerAction', handlePeerAction);
-    // signalingSocket.on('wbCanvasToJson', handleJsonToWbCanvas);
-    // signalingSocket.on('whiteboardAction', handleWhiteboardAction);
     signalingSocket.on('kickOut', handleKickedOut);
     signalingSocket.on('fileInfo', handleFileInfo);
     signalingSocket.on('fileAbort', handleFileAbort);
@@ -941,7 +859,6 @@ function handleButtonsRule() {
     elemDisplay(chatRoomBtn, buttons.main.showChatRoomBtn);
     //elemDisplay(captionBtn, buttons.main.showCaptionRoomBtn); // auto-detected
     elemDisplay(myHandBtn, buttons.main.showMyHandBtn);
-    // elemDisplay(whiteboardBtn, buttons.main.showWhiteboardBtn);
     elemDisplay(fileShareBtn, buttons.main.showFileShareBtn);
     elemDisplay(mySettingsBtn, buttons.main.showMySettingsBtn);
     elemDisplay(aboutBtn, buttons.main.showAboutBtn);
@@ -1114,7 +1031,7 @@ function welcomeUser() {
         } else if (result.isDenied) {
             let message = {
                 email: '',
-                subject: 'Please join our MiroTalk Video Chat Meeting',
+                subject: 'Please join our Group 19 Video Chat Meeting',
                 body: 'Click to join: ' + myRoomUrl,
             };
             shareRoomByEmail(message);
@@ -3025,23 +2942,7 @@ function setCaptionRoomBtn() {
     }
 }
 
-/**
- * Emoji picker chat room button click event
- */
-// function setChatEmojiBtn() {
-//     msgerEmojiBtn.addEventListener('click', (e) => {
-//         // prevent refresh page
-//         e.preventDefault();
-//         hideShowEmojiPicker();
-//     });
-//     // Add emoji picker
-//     const pickerOptions = {
-//         theme: 'dark',
-//         onEmojiSelect: addEmojiToMsg,
-//     };
-//     const emojiPicker = new EmojiMart.Picker(pickerOptions);
-//     msgerEmojiPicker.appendChild(emojiPicker);
-// }
+
 
 /**
  * Add emoji to chat message
@@ -3061,72 +2962,6 @@ function setMyHandBtn() {
     });
 }
 
-/**
- * Whiteboard: https://github.com/fabricjs/fabric.js
- */
-// function setMyWhiteboardBtn() {
-//     dragElement(whiteboard, whiteboardHeader);
-
-//     setupWhiteboard();
-
-//     whiteboardBtn.addEventListener('click', (e) => {
-//         handleWhiteboardToggle();
-//     });
-//     whiteboardPencilBtn.addEventListener('click', (e) => {
-//         whiteboardIsDrawingMode(true);
-//     });
-//     whiteboardObjectBtn.addEventListener('click', (e) => {
-//         whiteboardIsDrawingMode(false);
-//     });
-//     whiteboardUndoBtn.addEventListener('click', (e) => {
-//         whiteboardAction(getWhiteboardAction('undo'));
-//     });
-//     whiteboardRedoBtn.addEventListener('click', (e) => {
-//         whiteboardAction(getWhiteboardAction('redo'));
-//     });
-//     whiteboardSaveBtn.addEventListener('click', (e) => {
-//         wbCanvasSaveImg();
-//     });
-//     whiteboardImgFileBtn.addEventListener('click', (e) => {
-//         whiteboardAddObj('imgFile');
-//     });
-//     whiteboardImgUrlBtn.addEventListener('click', (e) => {
-//         whiteboardAddObj('imgUrl');
-//     });
-//     whiteboardTextBtn.addEventListener('click', (e) => {
-//         whiteboardAddObj('text');
-//     });
-//     whiteboardLineBtn.addEventListener('click', (e) => {
-//         whiteboardAddObj('line');
-//     });
-//     whiteboardRectBtn.addEventListener('click', (e) => {
-//         whiteboardAddObj('rect');
-//     });
-//     whiteboardCircleBtn.addEventListener('click', (e) => {
-//         whiteboardAddObj('circle');
-//     });
-//     whiteboardEraserBtn.addEventListener('click', (e) => {
-//         whiteboardIsEraser(true);
-//     });
-//     whiteboardCleanBtn.addEventListener('click', (e) => {
-//         confirmCleanBoard();
-//     });
-//     whiteboardCloseBtn.addEventListener('click', (e) => {
-//         handleWhiteboardToggle();
-//     });
-//     wbDrawingColorEl.addEventListener('change', (e) => {
-//         wbCanvas.freeDrawingBrush.color = wbDrawingColorEl.value;
-//         whiteboardIsDrawingMode(true);
-//     });
-//     wbBackgroundColorEl.addEventListener('change', (e) => {
-//         setWhiteboardBgColor(wbBackgroundColorEl.value);
-//     });
-//     whiteboardGhostButton.addEventListener('click', (e) => {
-//         wbIsBgTransparent = !wbIsBgTransparent;
-//         setWhiteboardBgColor(wbIsBgTransparent ? 'rgba(0, 0, 0, 0.100)' : wbBackgroundColorEl.value);
-//         //wbIsBgTransparent ? wbCanvasBackgroundColor('rgba(0, 0, 0, 0.100)'): setTheme(mirotalkTheme);
-//     });
-// }
 
 /**
  * File Transfer button event click
@@ -3724,7 +3559,7 @@ async function shareRoomUrl() {
             } else if (result.isDenied) {
                 let message = {
                     email: '',
-                    subject: 'Please join our MiroTalk Video Chat Meeting',
+                    subject: 'Please join our Group 19 Video Chat Meeting',
                     body: 'Click to join: ' + myRoomUrl,
                 };
                 shareRoomByEmail(message);
@@ -5702,519 +5537,6 @@ function handleUnlockTheRoom() {
         elemDisplay(unlockRoomBtn, true);
     });
 }
-
-/**
- * Handle whiteboard toogle
- */
-// function handleWhiteboardToggle() {
-//     thereIsPeerConnections() ? whiteboardAction(getWhiteboardAction('toggle')) : toggleWhiteboard();
-// }
-
-/**
- * Whiteboard: Show-Hide
- */
-// function toggleWhiteboard() {
-//     if (!wbIsOpen) playSound('newMessage');
-//     whiteboard.classList.toggle('show');
-//     whiteboard.style.top = '50%';
-//     whiteboard.style.left = '50%';
-//     wbIsOpen = wbIsOpen ? false : true;
-// }
-
-/**
- * Whiteboard: setup
- */
-// function setupWhiteboard() {
-//     setupWhiteboardCanvas();
-//     setupWhiteboardCanvasSize();
-//     setupWhiteboardLocalListners();
-// }
-
-/**
- * Whiteboard: setup canvas
- */
-// function setupWhiteboardCanvas() {
-//     wbCanvas = new fabric.Canvas('wbCanvas');
-//     wbCanvas.freeDrawingBrush.color = '#FFFFFF';
-//     wbCanvas.freeDrawingBrush.width = 3;
-//     whiteboardIsDrawingMode(true);
-// }
-
-/**
- * Whiteboard: setup canvas size
- */
-// function setupWhiteboardCanvasSize() {
-//     let optimalSize = [wbWidth, wbHeight];
-//     let scaleFactorX = window.innerWidth / optimalSize[0];
-//     let scaleFactorY = window.innerHeight / optimalSize[1];
-//     if (scaleFactorX < scaleFactorY && scaleFactorX < 1) {
-//         wbCanvas.setWidth(optimalSize[0] * scaleFactorX);
-//         wbCanvas.setHeight(optimalSize[1] * scaleFactorX);
-//         wbCanvas.setZoom(scaleFactorX);
-//         setWhiteboardSize(optimalSize[0] * scaleFactorX, optimalSize[1] * scaleFactorX);
-//     } else if (scaleFactorX > scaleFactorY && scaleFactorY < 1) {
-//         wbCanvas.setWidth(optimalSize[0] * scaleFactorY);
-//         wbCanvas.setHeight(optimalSize[1] * scaleFactorY);
-//         wbCanvas.setZoom(scaleFactorY);
-//         setWhiteboardSize(optimalSize[0] * scaleFactorY, optimalSize[1] * scaleFactorY);
-//     } else {
-//         wbCanvas.setWidth(optimalSize[0]);
-//         wbCanvas.setHeight(optimalSize[1]);
-//         wbCanvas.setZoom(1);
-//         setWhiteboardSize(optimalSize[0], optimalSize[1]);
-//     }
-//     wbCanvas.calcOffset();
-//     wbCanvas.renderAll();
-// }
-
-/**
- * Whiteboard: setup size
- * @param {string} w width
- * @param {string} h height
- */
-// function setWhiteboardSize(w, h) {
-//     document.documentElement.style.setProperty('--wb-width', w);
-//     document.documentElement.style.setProperty('--wb-height', h);
-// }
-
-/**
- * Set whiteboard background color
- * @param {string} color whiteboard bg
- */
-// function setWhiteboardBgColor(color) {
-//     let config = {
-//         room_id: roomId,
-//         peer_name: myPeerName,
-//         action: 'bgcolor',
-//         color: color,
-//     };
-//     whiteboardAction(config);
-// }
-
-/**
- * Whiteboard: drawing mode
- * @param {boolean} status of drawing mode
- */
-// function whiteboardIsDrawingMode(status) {
-//     wbCanvas.isDrawingMode = status;
-//     if (status) {
-//         setColor(whiteboardPencilBtn, 'green');
-//         setColor(whiteboardObjectBtn, 'white');
-//         setColor(whiteboardEraserBtn, 'white');
-//         wbIsEraser = false;
-//     } else {
-//         setColor(whiteboardPencilBtn, 'white');
-//         setColor(whiteboardObjectBtn, 'green');
-//     }
-// }
-
-/**
- * Whiteboard: eraser
- * @param {boolean} status if eraser on
- */
-// function whiteboardIsEraser(status) {
-//     whiteboardIsDrawingMode(false);
-//     wbIsEraser = status;
-//     setColor(whiteboardEraserBtn, wbIsEraser ? 'green' : 'white');
-// }
-
-/**
- * Set color to specific element
- * @param {object} elem element
- * @param {string} color to set
- */
-function setColor(elem, color) {
-    elem.style.color = color;
-}
-
-/**
- * Whiteboard: Add object to canvas
- * @param {string} type of object to add
- */
-// function whiteboardAddObj(type) {
-//     switch (type) {
-//         case 'imgUrl':
-//             Swal.fire({
-//                 background: swalBackground,
-//                 title: 'Image URL',
-//                 input: 'text',
-//                 showCancelButton: true,
-//                 confirmButtonText: 'OK',
-//                 showClass: {
-//                     popup: 'animate__animated animate__fadeInDown',
-//                 },
-//                 hideClass: {
-//                     popup: 'animate__animated animate__fadeOutUp',
-//                 },
-//             }).then((result) => {
-//                 if (result.isConfirmed) {
-//                     let wbCanvasImgURL = result.value;
-//                     if (isImageURL(wbCanvasImgURL)) {
-//                         fabric.Image.fromURL(wbCanvasImgURL, function (myImg) {
-//                             addWbCanvasObj(myImg);
-//                         });
-//                     } else {
-//                         userLog('error', 'The URL is not a valid image');
-//                     }
-//                 }
-//             });
-//             break;
-//         case 'imgFile':
-//             Swal.fire({
-//                 allowOutsideClick: false,
-//                 background: swalBackground,
-//                 position: 'center',
-//                 title: 'Select image',
-//                 input: 'file',
-//                 inputAttributes: {
-//                     accept: wbImageInput,
-//                     'aria-label': 'Select image',
-//                 },
-//                 showDenyButton: true,
-//                 confirmButtonText: `OK`,
-//                 denyButtonText: `Cancel`,
-//                 showClass: {
-//                     popup: 'animate__animated animate__fadeInDown',
-//                 },
-//                 hideClass: {
-//                     popup: 'animate__animated animate__fadeOutUp',
-//                 },
-//             }).then((result) => {
-//                 if (result.isConfirmed) {
-//                     let wbCanvasImg = result.value;
-//                     if (wbCanvasImg && wbCanvasImg.size > 0) {
-//                         let reader = new FileReader();
-//                         reader.onload = function (event) {
-//                             let imgObj = new Image();
-//                             imgObj.src = event.target.result;
-//                             imgObj.onload = function () {
-//                                 let image = new fabric.Image(imgObj);
-//                                 image.set({ top: 0, left: 0 }).scale(0.3);
-//                                 addWbCanvasObj(image);
-//                             };
-//                         };
-//                         reader.readAsDataURL(wbCanvasImg);
-//                     } else {
-//                         userLog('error', 'File not selected or empty');
-//                     }
-//                 }
-//             });
-//             break;
-//         case 'text':
-//             Swal.fire({
-//                 background: swalBackground,
-//                 title: 'Enter the text',
-//                 input: 'text',
-//                 showCancelButton: true,
-//                 confirmButtonText: 'OK',
-//                 showClass: {
-//                     popup: 'animate__animated animate__fadeInDown',
-//                 },
-//                 hideClass: {
-//                     popup: 'animate__animated animate__fadeOutUp',
-//                 },
-//             }).then((result) => {
-//                 if (result.isConfirmed) {
-//                     let wbCanvasText = result.value;
-//                     if (wbCanvasText) {
-//                         const text = new fabric.Text(wbCanvasText, {
-//                             top: 0,
-//                             left: 0,
-//                             fontFamily: 'Comfortaa',
-//                             fill: wbCanvas.freeDrawingBrush.color,
-//                             strokeWidth: wbCanvas.freeDrawingBrush.width,
-//                             stroke: wbCanvas.freeDrawingBrush.color,
-//                         });
-//                         addWbCanvasObj(text);
-//                     }
-//                 }
-//             });
-//             break;
-//         case 'line':
-//             const line = new fabric.Line([50, 100, 200, 200], {
-//                 top: 0,
-//                 left: 0,
-//                 fill: wbCanvas.freeDrawingBrush.color,
-//                 strokeWidth: wbCanvas.freeDrawingBrush.width,
-//                 stroke: wbCanvas.freeDrawingBrush.color,
-//             });
-//             addWbCanvasObj(line);
-//             break;
-//         case 'circle':
-//             const circle = new fabric.Circle({
-//                 radius: 50,
-//                 fill: 'transparent',
-//                 stroke: wbCanvas.freeDrawingBrush.color,
-//                 strokeWidth: wbCanvas.freeDrawingBrush.width,
-//             });
-//             addWbCanvasObj(circle);
-//             break;
-//         case 'rect':
-//             const rect = new fabric.Rect({
-//                 top: 0,
-//                 left: 0,
-//                 width: 150,
-//                 height: 100,
-//                 fill: 'transparent',
-//                 stroke: wbCanvas.freeDrawingBrush.color,
-//                 strokeWidth: wbCanvas.freeDrawingBrush.width,
-//             });
-//             addWbCanvasObj(rect);
-//             break;
-//     }
-// }
-
-/**
- * Whiteboard: add object
- * @param {object} obj to add
- */
-// function addWbCanvasObj(obj) {
-//     if (obj) {
-//         wbCanvas.add(obj);
-//         whiteboardIsDrawingMode(false);
-//         wbCanvasToJson();
-//     }
-// }
-
-/**
- * Whiteboard: Local listners
- */
-// function setupWhiteboardLocalListners() {
-//     wbCanvas.on('mouse:down', function (e) {
-//         mouseDown(e);
-//     });
-//     wbCanvas.on('mouse:up', function () {
-//         mouseUp();
-//     });
-//     wbCanvas.on('mouse:move', function () {
-//         mouseMove();
-//     });
-//     wbCanvas.on('object:added', function () {
-//         objectAdded();
-//     });
-// }
-
-/**
- * Whiteboard: mouse down
- * @param {object} e event
- * @returns
- */
-// function mouseDown(e) {
-//     wbIsDrawing = true;
-//     if (wbIsEraser && e.target) {
-//         wbCanvas.remove(e.target);
-//         return;
-//     }
-// }
-
-/**
- * Whiteboard: mouse up
- */
-// function mouseUp() {
-//     wbIsDrawing = false;
-//     wbCanvasToJson();
-// }
-
-/**
- * Whiteboard: mouse move
- * @returns
- */
-// function mouseMove() {
-//     if (wbIsEraser) {
-//         wbCanvas.hoverCursor = 'not-allowed';
-//         return;
-//     } else {
-//         wbCanvas.hoverCursor = 'move';
-//     }
-//     if (!wbIsDrawing) return;
-// }
-
-/**
- * Whiteboard: tmp objects
- */
-// function objectAdded() {
-//     if (!wbIsRedoing) wbPop = [];
-//     wbIsRedoing = false;
-// }
-
-/**
- * Whiteboard: set background color
- * @param {string} color to set
- */
-// function wbCanvasBackgroundColor(color) {
-//     document.documentElement.style.setProperty('--wb-bg', color);
-//     wbBackgroundColorEl.value = color;
-//     wbCanvas.setBackgroundColor(color);
-//     wbCanvas.renderAll();
-// }
-
-/**
- * Whiteboard: undo
- */
-// function wbCanvasUndo() {
-//     if (wbCanvas._objects.length > 0) {
-//         wbPop.push(wbCanvas._objects.pop());
-//         wbCanvas.renderAll();
-//     }
-// }
-
-// /**
-//  * Whiteboard: redo
-//  */
-// function wbCanvasRedo() {
-//     if (wbPop.length > 0) {
-//         wbIsRedoing = true;
-//         wbCanvas.add(wbPop.pop());
-//     }
-// }
-
-// /**
-//  * Whiteboard: save as images png
-//  */
-// function wbCanvasSaveImg() {
-//     const dataURL = wbCanvas.toDataURL({
-//         width: wbCanvas.getWidth(),
-//         height: wbCanvas.getHeight(),
-//         left: 0,
-//         top: 0,
-//         format: 'png',
-//     });
-//     const dataNow = getDataTimeString();
-//     const fileName = `whiteboard-${dataNow}.png`;
-//     saveDataToFile(dataURL, fileName);
-//     playSound('ok');
-// }
-
-// /**
-//  * Whiteboard: save data to file
-//  * @param {object} dataURL to download
-//  * @param {string} fileName to save
-//  */
-// function saveDataToFile(dataURL, fileName) {
-//     const a = document.createElement('a');
-//     a.style.display = 'none';
-//     a.href = dataURL;
-//     a.download = fileName;
-//     document.body.appendChild(a);
-//     a.click();
-//     setTimeout(() => {
-//         document.body.removeChild(a);
-//         window.URL.revokeObjectURL(dataURL);
-//     }, 100);
-// }
-
-// /**
-//  * Whiteboard: canvas objects to json
-//  */
-// function wbCanvasToJson() {
-//     if (thereIsPeerConnections()) {
-//         let config = {
-//             room_id: roomId,
-//             wbCanvasJson: JSON.stringify(wbCanvas.toJSON()),
-//         };
-//         sendToServer('wbCanvasToJson', config);
-//     }
-// }
-
-// /**
-//  * If whiteboard opened, update canvas to all peers connected
-//  */
-// async function wbUpdate() {
-//     if (wbIsOpen && thereIsPeerConnections()) wbCanvasToJson();
-// }
-
-// /**
-//  * Whiteboard: json to canvas objects
-//  * @param {object} config data
-//  */
-// function handleJsonToWbCanvas(config) {
-//     if (!wbIsOpen) toggleWhiteboard();
-
-//     wbCanvas.loadFromJSON(config.wbCanvasJson);
-//     wbCanvas.renderAll();
-// }
-
-// /**
-//  * Whiteboard: actions
-//  * @param {string} action whiteboard action
-//  * @returns {object} data
-//  */
-// function getWhiteboardAction(action) {
-//     return {
-//         room_id: roomId,
-//         peer_name: myPeerName,
-//         action: action,
-//     };
-// }
-
-// /**
-//  * Whiteboard: Clean content
-//  */
-// function confirmCleanBoard() {
-//     playSound('newMessage');
-
-//     Swal.fire({
-//         background: swalBackground,
-//         imageUrl: deleteImg,
-//         position: 'center',
-//         title: 'Clean the board',
-//         text: 'Are you sure you want to clean the board?',
-//         showDenyButton: true,
-//         confirmButtonText: `Yes`,
-//         denyButtonText: `No`,
-//         showClass: {
-//             popup: 'animate__animated animate__fadeInDown',
-//         },
-//         hideClass: {
-//             popup: 'animate__animated animate__fadeOutUp',
-//         },
-//     }).then((result) => {
-//         if (result.isConfirmed) {
-//             whiteboardAction(getWhiteboardAction('clear'));
-//             playSound('delete');
-//         }
-//     });
-// }
-
-// /**
-//  * Whiteboard: actions
-//  * @param {object} config data
-//  */
-// function whiteboardAction(config) {
-//     if (thereIsPeerConnections()) {
-//         sendToServer('whiteboardAction', config);
-//     }
-//     handleWhiteboardAction(config, false);
-// }
-
-// /**
-//  * Whiteboard: handle actions
-//  * @param {object} config data
-//  * @param {boolean} logme popup action
-//  */
-// function handleWhiteboardAction(config, logme = true) {
-//     if (logme) {
-//         userLog('toast', `${config.peer_name} whiteboard action: ${config.action}`);
-//     }
-//     switch (config.action) {
-//         case 'bgcolor':
-//             wbCanvasBackgroundColor(config.color);
-//             break;
-//         case 'undo':
-//             wbCanvasUndo();
-//             break;
-//         case 'redo':
-//             wbCanvasRedo();
-//             break;
-//         case 'clear':
-//             wbCanvas.clear();
-//             break;
-//         case 'toggle':
-//             toggleWhiteboard();
-//             break;
-//         //...
-//     }
-// }
 
 /**
  * Create File Sharing Data Channel
