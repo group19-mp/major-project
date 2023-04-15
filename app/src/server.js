@@ -194,7 +194,7 @@ app.get(['/'], (req, res) => {
     res.sendFile(views.landing);
 });
 
-// mirotalk about
+// about
 app.get(['/about'], (req, res) => {
     res.sendFile(views.about);
 });
@@ -250,7 +250,6 @@ app.get('/join/*', (req, res) => {
 });
 
 /**
-    MiroTalk API v1
     For api docs we use: https://swagger.io/
 */
 
@@ -259,7 +258,7 @@ app.post([apiBasePath + '/meeting'], (req, res) => {
     // check if user was authorized for the api call
     let authorization = req.headers.authorization;
     if (authorization != api_key_secret) {
-        log.debug('MiroTalk get meeting - Unauthorized', {
+        log.debug('Group 19 VC get meeting - Unauthorized', {
             header: req.headers,
             body: req.body,
         });
@@ -272,7 +271,7 @@ app.post([apiBasePath + '/meeting'], (req, res) => {
     res.end(JSON.stringify({ meeting: meetingURL }));
 
     // log.debug the output if all done
-    log.debug('MiroTalk get meeting - Authorized', {
+    log.debug('Group 19 Video Conference get meeting - Authorized', {
         header: req.headers,
         body: req.body,
         meeting: meetingURL,
@@ -323,7 +322,7 @@ function getMeetingURL(host) {
     return 'http' + (host.includes('localhost') ? '' : 's') + '://' + host + '/join/' + uuidV4();
 }
 
-// end of MiroTalk API v1
+// 
 
 // not match any of page before, so 404 not found
 app.get('*', function (req, res) {
