@@ -165,8 +165,8 @@ let isScreenEnabled = getScreenEnabled();
 let isScreenSharingSupported = false;
 let isCamMirrored = false;
 let notify = getNotify();
-let useAudio = true;
-let useVideo = true;
+let useAudio = false;
+let useVideo = false;
 let isEnumerateVideoDevices = false;
 let isEnumerateAudioDevices = false;
 let camera = 'user'; // user = front-facing camera on a smartphone. | environment = the back camera on a smartphone.
@@ -752,7 +752,11 @@ async function handleConnect() {
 
     myPeerId = signalingSocket.id;
     console.log('04. My peer id [ ' + myPeerId + ' ]');
-
+    console.log(window.location);
+    const urlParams = new URLSearchParams(window.location.search);
+    const name = urlParams.get('name');
+    myPeerName = name
+    
     if (localMediaStream) {
         await joinToChannel();
     } else {
