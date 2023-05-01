@@ -341,6 +341,8 @@ let videoAudioUrlElement;
 let speechRecognitionIcon;
 let speechRecognitionStart;
 let speechRecognitionStop;
+// participants list
+let participantsList = [];
 
 /**
  * Load all Html elements by Id
@@ -1073,7 +1075,13 @@ async function handleAddPeer(config) {
     peerConnections[peer_id] = peerConnection;
 
     allPeers = peers;
-
+    for(let peer_id in peers) {
+        participantsList.push({
+            peer_id: peer_id,
+            peer_name: peers[peer_id]['peer_name'],
+        });
+    }
+    console.log(participantsList);
     console.log('[RTCPeerConnection] - PEER_ID', peer_id); // the connected peer_id
     console.log('[RTCPeerConnection] - PEER-CONNECTIONS', peerConnections); // all peers connections in the room expect myself
     console.log('[RTCPeerConnection] - PEERS', peers); // all peers in the room
