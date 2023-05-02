@@ -6517,3 +6517,19 @@ function whiteboard(){
     }
     window.open('../views/whiteboard.html?x=' + checker,'_blank');
 }
+
+function participantList(){
+    const toggleListButton = document.getElementById('toggle-list-button');
+    const participantListElement = document.getElementById('participant-list');
+
+    participantList.forEach(participant => {
+        const li = document.createElement('li');
+        const text = document.createTextNode(`${participant.peer_name} (${participant.peer_id})`);
+        li.appendChild(text);
+        participantListElement.appendChild(li);
+    });
+
+    toggleListButton.addEventListener('click', () => {
+        participantListElement.classList.toggle('hidden');
+    });
+}
