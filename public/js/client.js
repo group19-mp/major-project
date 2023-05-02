@@ -1077,10 +1077,10 @@ async function handleAddPeer(config) {
     allPeers = peers;
     if (participantsMap.size == 0) {
         for(let peer_id in peers) {
-            participantsMap[peer_id] = peers[peer_id]['peer_name'];
+            participantsMap.set(peer_id,peers[peer_id]['peer_name']);
         }
     } else {
-        participantsMap[peer_id] = peers[peer_id]['peer_name'];
+        participantsMap.set(peer_id,peers[peer_id]['peer_name']);
     }
 
     console.log(participantsMap)
@@ -6520,14 +6520,14 @@ function whiteboard() {
     window.open('../views/whiteboard.html?x=' + checker, '_blank');
 }
 
-
-function participantList(){
+function participantListFunction(){
     const toggleListButton = document.getElementById('toggle-list-button');
     const participantListElement = document.getElementById('participant-list');
-
-    participantList.forEach(participant => {
+    participantListElement.innerHTML = ''; 
+    console.log(participantsMap);
+    participantsMap.forEach(participant => {
         const li = document.createElement('li');
-        const text = document.createTextNode(`${participant.peer_name} (${participant.peer_id})`);
+        const text = document.createTextNode(`${participant}`);
         li.appendChild(text);
         participantListElement.appendChild(li);
     });
