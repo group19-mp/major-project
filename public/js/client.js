@@ -6,8 +6,6 @@
  ██████ ███████ ██ ███████ ██   ████    ██   
 */
 
-
-
 'use strict'; // https://www.w3schools.com/js/js_strict.asp
 
 const isHttps = false; // must be the same on server.js
@@ -341,6 +339,8 @@ let videoAudioUrlElement;
 let speechRecognitionIcon;
 let speechRecognitionStart;
 let speechRecognitionStop;
+// participants list
+let participantsMap = new Map();
 
 /**
  * Load all Html elements by Id
@@ -755,8 +755,8 @@ async function handleConnect() {
     console.log(window.location);
     const urlParams = new URLSearchParams(window.location.search);
     const name = urlParams.get('name');
-    myPeerName = name
-    
+    myPeerName = name;
+
     if (localMediaStream) {
         await joinToChannel();
     } else {
@@ -981,6 +981,8 @@ function whoAreYouJoin() {
  */
 async function joinToChannel() {
     console.log('12. join to channel', roomId);
+
+    
     sendToServer('join', {
         channel: roomId,
         userAgent: userAgent,
@@ -1073,7 +1075,18 @@ async function handleAddPeer(config) {
     peerConnections[peer_id] = peerConnection;
 
     allPeers = peers;
+    if (participantsMap.size == 0) {
+        for(let peer_id in peers) {
+            participantsMap.set(peer_id,peers[peer_id]['peer_name']);
+        }
+    } else {
+        participantsMap.set(peer_id,peers[peer_id]['peer_name']);
+    }
 
+    console.log(participantsMap)
+
+
+    console.log('*************************************************');
     console.log('[RTCPeerConnection] - PEER_ID', peer_id); // the connected peer_id
     console.log('[RTCPeerConnection] - PEER-CONNECTIONS', peerConnections); // all peers connections in the room expect myself
     console.log('[RTCPeerConnection] - PEERS', peers); // all peers in the room
@@ -2946,8 +2959,6 @@ function setCaptionRoomBtn() {
     }
 }
 
-
-
 /**
  * Add emoji to chat message
  */
@@ -2965,7 +2976,6 @@ function setMyHandBtn() {
         setMyHandStatus();
     });
 }
-
 
 /**
  * File Transfer button event click
@@ -4578,6 +4588,9 @@ function searchPeer() {
  * @param {string} peer_id socket.id
  */
 function msgerRemovePeer(peer_id) {
+    console.log("DELETE******************************")
+    participantsMap.delete(peer_id)
+    console.log(participantsMap)
     let msgerPrivateDiv = getId(peer_id + '_pMsgDiv');
     if (msgerPrivateDiv) {
         let peerToRemove = msgerPrivateDiv.firstChild;
@@ -4777,7 +4790,6 @@ function emitMsg(from, to, msg, privateMsg, id) {
     console.log('Send msg', chatMessage);
     sendToDataChannel(chatMessage);
 }
-
 
 /**
  * Download Chat messages in json format
@@ -6195,7 +6207,6 @@ function leaveRoom() {
     openURL('/newcall');
 }
 
-
 /**
  * Make Obj draggable: https://www.w3schools.com/howto/howto_js_draggable.asp
  * @param {object} elmnt father element
@@ -6499,13 +6510,31 @@ function elemDisplay(elem, yes) {
     elem.style.display = yes ? 'inline' : 'none';
 }
 
-function whiteboard(){
+function whiteboard() {
     var checker;
-    if(isPresenter){
-        checker=1;
+    if (isPresenter) {
+        checker = 1;
+    } else {
+        checker = 0;
     }
-    else{
-        checker=0;
-    }
-    window.open('../views/whiteboard.html?x=' + checker,'_blank');
+    window.open('../views/whiteboard.html?x=' + checker, '_blank');
+}
+
+function participantListFunction(){
+    var participantBtn = document.getElementById('participant-btn');
+	var participantList = document.getElementById('participant-list');
+	participantBtn.addEventListener('click', function() {
+		if (participantList.style.display === 'none') {
+			participantList.style.display = 'block';
+		} else {
+			participantList.style.display = 'none';
+		}
+	});
+    const participantUl = document.getElementById('participant-ul');
+    participantUl.innerHTML = '';
+    participantsMap.forEach(participant =>{
+        const newParticipant = document.createElement("li");
+        newParticipant.innerHTML = participant;
+        participantUl.appendChild(newParticipant);
+    })
 }

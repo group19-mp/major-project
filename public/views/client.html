@@ -79,7 +79,7 @@ access to use this app.
         <!-- Start buttons bar
         https://fontawesome.com/icons?d=gallery
         -->
-
+        
         <div id="buttonsBar" class="fadein">
             <button id="shareRoomBtn" class="fas fa-users"></button>
             <button id="audioBtn" class="fas fa-microphone"></button>
@@ -93,6 +93,7 @@ access to use this app.
             <button id="captionBtn" class="fas fa-closed-captioning"></button>
             <button id="myHandBtn" class="fas fa-hand-paper"></button>
             <button id="fileShareBtn" class="fas fa-folder-open"></button>
+            <button id="participant-btn" onclick="participantListFunction()"><i class="fa fa-user-circle"></i></button>
             <button id="mySettingsBtn" class="fas fa-cogs"></button>
             <button id="aboutBtn" class="fas fa-question"></button>
             <button id="leaveRoomBtn" class="fas fa-right-from-bracket"></button>
@@ -175,6 +176,12 @@ access to use this app.
         </section>
 
         <!-- End chat room -->
+
+        <div id="participant-list">
+            <h3>Participants</h3>
+            <ul id="participant-ul">
+            </ul>
+        </div>
 
         <!-- Start of caption section -->
 

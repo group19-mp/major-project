@@ -1179,6 +1179,32 @@ button {
     left: 32px;
 }
 
+#participant-btn {
+    z-index: 999;
+}
+
+#participant-list {
+    display: none;
+    position: absolute;
+    top: 50px;
+    right: 0;
+    width: 200px;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    z-index: 999;
+}
+#participant-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+#participant-list li {
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
+}
+
 /*
 z-index
 7 video avatar img
