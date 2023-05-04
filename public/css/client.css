@@ -1179,56 +1179,30 @@ button {
     left: 32px;
 }
 
-#sidebar {
-    position: fixed;
-    top: 0;
-    left: -300px;
-    width: 300px;
-    height: 100%;
-    background-color: #f5f5f5;
-    transition: left 0.3s ease-in-out;
-    z-index: 1;
-    overflow-y: auto;
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+#participant-btn {
+    z-index: 999;
 }
-  
-#sidebar.open {
-    left: 0;
-}
-  
+
 #participant-list {
-    margin: 0;
-    padding: 0;
-    list-style: none;
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    justify-content: center;
-}
-  
-#participant-list li {
-    margin: 0 5px;
-    padding: 8px;
-    border-radius: 20px;
-    background-color: #ffffff;
-    font-size: 12px;
-    font-weight: bold;
-    white-space: nowrap;
-}
-  
-#participant-list li:first-child {
-    margin-left: 0;
-}
-  
-#participant-list li:last-child {
-    margin-right: 0;
-}
-  
-#toggle-list-button {
+    display: none;
     position: absolute;
-    top: 10px;
-    right: 10px;
-    z-index: 2;
+    top: 50px;
+    right: 0;
+    width: 200px;
+    padding: 10px;
+    background-color: #fff;
+    box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+    border-radius: 5px;
+    z-index: 999;
+}
+#participant-list ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+#participant-list li {
+    padding: 5px;
+    border-bottom: 1px solid #ccc;
 }
 
 /*

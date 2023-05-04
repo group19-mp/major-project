@@ -6521,18 +6521,20 @@ function whiteboard() {
 }
 
 function participantListFunction(){
-    const toggleListButton = document.getElementById('toggle-list-button');
-    const participantListElement = document.getElementById('participant-list');
-    participantListElement.innerHTML = ''; 
-    console.log(participantsMap);
-    participantsMap.forEach(participant => {
-        const li = document.createElement('li');
-        const text = document.createTextNode(`${participant}`);
-        li.appendChild(text);
-        participantListElement.appendChild(li);
-    });
-
-    toggleListButton.addEventListener('click', () => {
-        participantListElement.classList.toggle('hidden');
-    });
+    var participantBtn = document.getElementById('participant-btn');
+	var participantList = document.getElementById('participant-list');
+	participantBtn.addEventListener('click', function() {
+		if (participantList.style.display === 'none') {
+			participantList.style.display = 'block';
+		} else {
+			participantList.style.display = 'none';
+		}
+	});
+    const participantUl = document.getElementById('participant-ul');
+    participantUl.innerHTML = '';
+    participantsMap.forEach(participant =>{
+        const newParticipant = document.createElement("li");
+        newParticipant.innerHTML = participant;
+        participantUl.appendChild(newParticipant);
+    })
 }
